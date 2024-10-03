@@ -16,9 +16,6 @@ const corsOptions = {
   optionsSuccessStatus: 204, // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-
-
-
 app.use(cors(corsOptions));
 
 // Middleware
@@ -26,6 +23,9 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/api', cardRoutes);
+
+// Log the MongoDB URI to verify it's being loaded correctly
+console.log('MongoDB URI:', config.mongoURI);
 
 // Connect to MongoDB
 mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
