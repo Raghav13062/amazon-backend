@@ -9,11 +9,14 @@ const config = require('./config');
 
 const app = express();
 
+// Log the MongoDB URI to verify it's being loaded correctly
+console.log('MONGO_URI:', process.env.MONGO_URI);
+
 // CORS Configuration
 const corsOptions = {
   origin: '*', // Allow all origins
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  optionsSuccessStatus: 204, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 204,
 };
 
 app.use(cors(corsOptions));
@@ -24,11 +27,8 @@ app.use(bodyParser.json());
 // Routes
 app.use('/api', cardRoutes);
 
-// Log the MongoDB URI to verify it's being loaded correctly
-console.log('MongoDB URI:', config.mongoURI);
-
-// Connect to MongoDB
-mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+// Connect to MongoDB (removed deprecated options)
+mongoose.connect(config.mongoURI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
