@@ -22,10 +22,7 @@ app.use(bodyParser.json());
 
 app.use('/api', cardRoutes);
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: false,
-  useUnifiedTopology: false,
-})
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
