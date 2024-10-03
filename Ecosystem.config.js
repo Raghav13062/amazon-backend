@@ -6,7 +6,7 @@ module.exports = {
         watch: true,
         env: {
             mongoURI: process.env.MONGO_URI,
-            port: process.env.PORT || 4000,
+            port: process.env.PORT || 4001,
             jwtSecret: process.env.JWT_SECRET,
         },
       },
